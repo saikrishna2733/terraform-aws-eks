@@ -36,25 +36,25 @@ variable "public-kublet-extra-args" {
   description = "Additional arguments to supply to the public node kubelet process"
 
 }
-
+####################THis is using at network.tf #########
 variable "vpc-subnet-cidr" {
   default     = "10.0.0.0/16"
   type        = string
   description = "The VPC Subnet CIDR"
 }
-
+####################THis is using at network.tf #########
 variable "private-subnet-cidr" {
   default     = ["10.0.0.0/19", "10.0.32.0/19", "10.0.64.0/19"]
   type        = list
   description = "Private Subnet CIDR"
 }
-
+####################THis is using at network.tf #########
 variable "public-subnet-cidr" {
   default     = ["10.0.128.0/20", "10.0.144.0/20", "10.0.160.0/20"]
   type        = list
   description = "Public Subnet CIDR"
 }
-
+####################THis is using at network.tf #########
 variable "db-subnet-cidr" {
   default     = ["10.0.192.0/21", "10.0.200.0/21", "10.0.208.0/21"]
   type        = list

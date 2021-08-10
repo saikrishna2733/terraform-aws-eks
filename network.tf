@@ -1,18 +1,21 @@
-### VPC
+###################### VPC ###############
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.7.0"
 
   name = "${var.cluster-name}-eks-vpc"
+  ###### from filename=variables.tf (this is used for eks cluster name)
 
   cidr = var.vpc-subnet-cidr
+  ############from filename=variables.tf (this is used for eks cluster name)  default 10.0.0.0/16 & its pvt subnet
 
   azs              = var.availability-zones
   private_subnets  = var.private-subnet-cidr
   public_subnets   = var.public-subnet-cidr
   database_subnets = var.db-subnet-cidr
-
+  ############from filename=variables.tf
+  
   create_database_subnet_group = true
 
   enable_dns_hostnames = true
