@@ -1,11 +1,11 @@
 # Variables Configuration
-varibles "AWS_SECRET_KEY"{
+variable "AWS_SECRET_KEY"{
   default     = ""
   type        = string
   description = "aws secret key details"
 }
 
-varibles "AWS_ACCESS_KEY"{
+variable "AWS_ACCESS_KEY"{
   default     = ""
   type        = string
   description = "aws secret key details"
