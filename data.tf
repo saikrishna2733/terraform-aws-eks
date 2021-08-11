@@ -1,5 +1,5 @@
 data "aws_vpc" "eks" {
-  id = "${aws_vpc.vpc.vpc_id}"
+  id = aws_vpc.vpc.id
 }
 
 data "aws_subnet_ids" "private" {
