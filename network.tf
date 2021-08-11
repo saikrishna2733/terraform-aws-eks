@@ -139,5 +139,5 @@ resource "aws_nat_gateway" "natgw" {
 ############################ELASTIC IP#################################
 resource "aws_eip" "lb" {
   vpc      = true
-  depends_on = [aws_internet_gateway.ig]
+  depends_on = [aws_internet_gateway.igw]
 }
