@@ -93,24 +93,22 @@ resource "aws_security_group" "bastionsg" {
   description = "Allow 22 port inbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
-  ingress = [
-    {
+  ingress     {
       description      = "TLS from VPC"
       from_port        = 22
       to_port          = 22
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
     }
-  ]
+  
 
-  egress = [
-    {
+  egress    {
       from_port        = 0
       to_port          = 0
       protocol         = "-1"
       cidr_blocks      = ["0.0.0.0/0"]
     }
-  ]
+  
 
   tags = {
     Name = "${var.cluster-name}-BastionOpen-sg"
@@ -124,32 +122,30 @@ resource "aws_security_group" "cluster-sg" {
   description = "Allow 22 port inbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
-  ingress = [
-    {
+  ingress     {
       description      = "TLS from VPC"
       from_port        = 0
       to_port          = 65535
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0"]
-    },
-    {
+    }
+  ingress   {
       description      = "TLS from VPC"
       from_port        = 443
       to_port          = 443
       protocol         = "tcp"
-      security_group_id = aws_security_group.node-sg.id
+      security_groups = [aws_security_group.node-sg.id]
  
     }
-  ]
+  
 
-  egress = [
-    {
+  egress     {
       from_port        = 0
       to_port          = 0
       protocol         = "-1"
       cidr_blocks      = ["0.0.0.0/0"]
     }
-  ]
+  
 
   tags = {
     Name = "${var.cluster-name}-cluster-sg"
@@ -163,24 +159,22 @@ resource "aws_security_group" "node-sg" {
   description = "Allow 22 port inbound traffic"
   vpc_id      = aws_vpc.vpc.id
 
-  ingress = [
-    {
+  ingress     {
       description      = "TLS from VPC"
       from_port        = 1025
       to_port          = 65535
       protocol         = "tcp"
-      source_security_group_id = aws_security_group.cluster-sg.id
+      cidr_blocks      = ["0.0.0.0/0"]
     }
-  ]
+  
 
-  egress = [
-    {
+  egress     {
       from_port        = 0
       to_port          = 0
       protocol         = "-1"
       cidr_blocks      = ["0.0.0.0/0"]
     }
-  ]
+  
 
   tags = {
     Name = "${var.cluster-name}-node-sg"
