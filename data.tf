@@ -1,5 +1,5 @@
 data "aws_vpc" "eks" {
-  id = "${module.vpc.vpc_id}"
+  id = "${aws_vpc.vpc.vpc_id}"
 }
 
 data "aws_subnet_ids" "private" {
@@ -20,17 +20,17 @@ data "aws_subnet_ids" "public" {
 
 data "aws_security_group" "cluster" {
   vpc_id = data.aws_vpc.eks.id
-  name   = "${module.cluster-sg.this_security_group_name}"
+  name   = aws_security_group.cluster-sg.name
 }
 
 data "aws_security_group" "node" {
   vpc_id = data.aws_vpc.eks.id
-  name   = "${module.node-sg.this_security_group_name}"
+  name   = aws_security_group.node-sg.name
 }
 
 data "aws_security_group" "bastion" {
   vpc_id = data.aws_vpc.eks.id
-  name   = "${module.ssh_sg.this_security_group_name}"
+  name   = aws_security_group.bastionsg.name
 }
 
 data "aws_ami" "bastion" {

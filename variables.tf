@@ -1,10 +1,21 @@
 # Variables Configuration
+varibles "AWS_SECRET_KEY"{
+  default     = ""
+  type        = string
+  description = "aws secret key details"
+}
 
+varibles "AWS_ACCESS_KEY"{
+  default     = ""
+  type        = string
+  description = "aws secret key details"
+}
 variable "cluster-name" {
   default     = "eks-cluster"
   type        = string
   description = "The name of your EKS Cluster"
 }
+
 
 variable "aws-region" {
   default     = "us-east-1"
@@ -19,7 +30,7 @@ variable "availability-zones" {
 }
 
 variable "k8s-version" {
-  default     = "1.17"
+  default     = "1.20"
   type        = string
   description = "Required K8s version"
 }
@@ -68,7 +79,7 @@ variable "eks-cw-logging" {
 }
 
 variable "node-instance-type" {
-  default     = "m4.large"
+  default     = "t2.small"
   type        = string
   description = "Worker Node EC2 instance type"
 }
@@ -97,9 +108,15 @@ variable "min-size" {
   type        = string
   description = "Autoscaling Minimum node capacity"
 }
-
+################################# EC2-Keypair Variables starts here ###################
 variable "ec2-key-public-key" {
-  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD3F6tyPEFEzV0LX3X8BsXdMsQz1x2cEikKDEY0aIj41qgxMCP/iteneqXSIFZBp5vizPvaoIR3Um9xK7PGoW8giupGn+EPuxIA4cDM4vzOqOkiMPhz5XK0whEjkVzTo4+S0puvDZuwIsdiW9mxhJc7tgBNL0cYlWSYVkz4G/fslNfRPW5mYAM49f4fhtxPb5ok4Q2Lg9dPKVHO/Bgeu5woMc7RY0p1ej6D4CKFE6lymSDJpW0YHX/wqE9+cfEauh7xZcG0q9t2ta6F6fmX0agvpFyZo8aFbXeUBr7osSCJNgvavWbM/06niWrOvYX2xwWdhXmXSrbX8ZbabVohBK41 email@example.com"
+  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAsbGfmwFr1if0a6eUnNlylnzbhAevNyU656H8ApcqIDh+vYvOIxqXYzkQ5nNlCCrGe2TAOt/grx4q0wfkuIIIqeZnTzx1Qv3h25Vox0lU2FGpS6bLT0k7y6+hzUzapmNPep1W9VGCNQxJ7MyuxwtTymbLyMHoKRH9gWudToUjG2ip1JQQABLgsJ8hWm6zwJJmOijs5HFBXLN61ZLL2o2PRkMH/Uo52tOK2sw58KLpGRyKo6JPbGoKGp5TJUjL3prKiF/eqX82zFRIxsFypobhCUeAnkGa6BBjg043CH6M61NpcfQddmtdX0cKWhId3rDuxqWDwzI+Gxq9Bho6yblxkQ== rsa-key-20210811"
   type        = string
   description = "AWS EC2 public key data"
 }
+variable "keypairname" {
+  default     = "sai-keypair"
+  type        = string
+  description = "The name of your aws key pair"
+}
+################################# EC2-Keypair Variables ends here ######################
