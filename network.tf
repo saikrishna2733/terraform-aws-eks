@@ -91,26 +91,26 @@ resource "aws_subnet" "publicsubnet3" {
 resource "aws_subnet" "privatesubnet1" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.30.0/24"
-
+  availability_zone = "us-east-1a"
   tags = {
-    Name = "${var.cluster-name}-eks-private"
+    Name = "${var.cluster-name}-eks-private1"
   }
 }
 
 resource "aws_subnet" "privatesubnet2" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.20.0/24"
-
+  availability_zone = "us-east-1a"
   tags = {
-    Name = "${var.cluster-name}-eks-private"
+    Name = "${var.cluster-name}-eks-private2"
   }
 }
 resource "aws_subnet" "privatesubnet3" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.10.0/24"
-
+  availability_zone = "us-east-1a"
   tags = {
-    Name = "${var.cluster-name}-eks-private"
+    Name = "${var.cluster-name}-eks-private3"
   }
 }
 

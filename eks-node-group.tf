@@ -16,7 +16,8 @@ resource "aws_eks_node_group" "eks-node-group" {
   depends_on = [
     aws_eks_cluster.eks,
     aws_iam_role_policy_attachment.node-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.node-AmazonEKS_CNI_Policy
+    aws_iam_role_policy_attachment.node-AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.node-AmazonEC2ContainerRegistryReadOnly
   ]
   tags = {
     Name = "${var.cluster-name}-default-node-group"
