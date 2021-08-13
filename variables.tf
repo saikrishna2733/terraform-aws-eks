@@ -79,7 +79,7 @@ variable "eks-cw-logging" {
 }
 
 variable "node-instance-type" {
-  default     = "t2.small"
+  default     = "t3.medium"
   type        = string
   description = "Worker Node EC2 instance type"
 }
@@ -92,13 +92,13 @@ variable "root-block-size" {
 }
 
 variable "desired-capacity" {
-  default     = 2
+  default     = 1
   type        = string
   description = "Autoscaling Desired node capacity"
 }
 
 variable "max-size" {
-  default     = 5
+  default     = 2
   type        = string
   description = "Autoscaling maximum node capacity"
 }

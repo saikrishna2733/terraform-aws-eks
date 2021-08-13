@@ -9,7 +9,9 @@ resource "aws_eks_cluster" "eks" {
 
   vpc_config {
     security_group_ids = [data.aws_security_group.cluster.id]
-    subnet_ids         = data.aws_subnet_ids.private.ids
+    subnet_ids         = data.aws_subnet_ids.public.ids
+    endpoint_private_access   = false
+    endpoint_public_access    = true
   }
 
   enabled_cluster_log_types = var.eks-cw-logging
@@ -18,4 +20,7 @@ resource "aws_eks_cluster" "eks" {
     aws_iam_role_policy_attachment.cluster-AmazonEKSClusterPolicy,
     aws_iam_role_policy_attachment.cluster-AmazonEKSServicePolicy,
   ]
+  tags = {
+    Name = "${var.cluster-name}-default-node-group"
+  }
 }

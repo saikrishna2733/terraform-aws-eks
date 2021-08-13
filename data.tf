@@ -6,7 +6,7 @@ data "aws_subnet_ids" "private" {
   vpc_id = data.aws_vpc.eks.id
 
   tags = {
-    Name = "${var.cluster-name}-eks-private1"
+    Name = "${var.cluster-name}-eks-private"
   }
 }
 
@@ -14,7 +14,7 @@ data "aws_subnet_ids" "public" {
   vpc_id = data.aws_vpc.eks.id
 
   tags = {
-    Name = "${var.cluster-name}-eks-public1"
+    Name = "${var.cluster-name}-eks-public"
   }
 }
 

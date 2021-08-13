@@ -55,6 +55,30 @@ resource "aws_vpc" "vpc" {
 }
   
 }
+############################route table########################
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.vpc.id
+}
+
+resource "aws_route" "public" {
+  route_table_id         = aws_route_table.public.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.igw.id
+}
+
+resource "aws_route_table_association" "public1" {
+ # count = length(var.public_subnet_cidr_blocks)
+
+  subnet_id      = aws_subnet.publicsubnet1.id
+  route_table_id = aws_route_table.public.id
+}
+
+resource "aws_route_table_association" "public2" {
+ # count = length(var.public_subnet_cidr_blocks)
+
+  subnet_id      = aws_subnet.publicsubnet2.id
+  route_table_id = aws_route_table.public.id
+}
 ############################PUBLIC SUBNETS#####################
 resource "aws_subnet" "publicsubnet1" {
   vpc_id     = aws_vpc.vpc.id
@@ -64,6 +88,9 @@ resource "aws_subnet" "publicsubnet1" {
 
   tags = {
     Name = "${var.cluster-name}-eks-public"
+    "kubernetes.io/cluster/${var.cluster-name}" = "shared"
+    "kubernetes.io/role/internal-elb"      =  1
+    "kubernetes.io/role/elb"               =  1
   }
 }
 
@@ -75,44 +102,47 @@ resource "aws_subnet" "publicsubnet2" {
 
   tags = {
     Name = "${var.cluster-name}-eks-public"
+    "kubernetes.io/cluster/${var.cluster-name}" = "shared"
+    "kubernetes.io/role/internal-elb"      =  1
+    "kubernetes.io/role/elb"               =  1
   }
 }
-resource "aws_subnet" "publicsubnet3" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.3.0/24"
-  map_public_ip_on_launch = true ###by default its false for pvt subnets, no need to mention.
-  availability_zone = "us-east-1c"
+# resource "aws_subnet" "publicsubnet3" {
+#   vpc_id     = aws_vpc.vpc.id
+#   cidr_block = "10.0.3.0/24"
+#   map_public_ip_on_launch = true ###by default its false for pvt subnets, no need to mention.
+#   availability_zone = "us-east-1c"
 
-  tags = {
-    Name = "${var.cluster-name}-eks-public"
-  }
-}
-########################PRIVATE#######################
+#   tags = {
+#     Name = "${var.cluster-name}-eks-public3"
+#   }
+# }
+# ########################PRIVATE#######################
 resource "aws_subnet" "privatesubnet1" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.30.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    Name = "${var.cluster-name}-eks-private1"
+    Name = "${var.cluster-name}-eks-private"
   }
 }
 
 resource "aws_subnet" "privatesubnet2" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.20.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-east-1b"
   tags = {
-    Name = "${var.cluster-name}-eks-private2"
+    Name = "${var.cluster-name}-eks-private"
   }
 }
-resource "aws_subnet" "privatesubnet3" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.0.10.0/24"
-  availability_zone = "us-east-1a"
-  tags = {
-    Name = "${var.cluster-name}-eks-private3"
-  }
-}
+# resource "aws_subnet" "privatesubnet3" {
+#   vpc_id     = aws_vpc.vpc.id
+#   cidr_block = "10.0.10.0/24"
+#   availability_zone = "us-east-1c"
+#   tags = {
+#     Name = "${var.cluster-name}-eks-private"
+#   }
+# }
 
 #########################Internet Gateway ########################
 resource "aws_internet_gateway" "igw" {
