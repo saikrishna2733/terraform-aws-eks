@@ -79,7 +79,7 @@ variable "eks-cw-logging" {
 }
 
 variable "node-instance-type" {
-  default     = "t3.medium"
+  default     = "t2.medium"
   type        = string
   description = "Worker Node EC2 instance type"
 }
