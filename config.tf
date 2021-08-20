@@ -16,27 +16,26 @@ data:
 CONFIGMAPAWSAUTH
 
   kubeconfig = <<KUBECONFIG
-
 apiVersion: v1
 clusters:
 - cluster:
     server: ${aws_eks_cluster.eks.endpoint}
     certificate-authority-data: ${aws_eks_cluster.eks.certificate_authority.0.data}
-  name: ${var.cluster-name}
+  name: ${aws_eks_cluster.eks.arn}
 contexts:
 - context:
-    cluster: ${var.cluster-name}
-    user: ${var.cluster-name}
-  name: ${var.cluster-name}
-current-context: ${var.cluster-name}
+    cluster: ${aws_eks_cluster.eks.arn}
+    user: $${aws_eks_cluster.eks.arn}
+  name: ${aws_eks_cluster.eks.arn}
+current-context: ${aws_eks_cluster.eks.arn}
 kind: Config
 preferences: {}
 users:
-- name: ${var.cluster-name}
+- name: ${aws_eks_cluster.eks.arn}
   user:
     exec:
       apiVersion: client.authentication.k8s.io/v1alpha1
-      command: aws
+      command: echo $(aws eks get-token --cluster-name=${var.cluster-name} --region=${var.aws-region})
       args:
         - "eks"
         - "get-token"
