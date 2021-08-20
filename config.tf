@@ -40,9 +40,9 @@ users:
         - eks
         - get-token
         - --cluster-name
-        - "${var.cluster-name}"
+        - ${var.cluster-name}
         - --region
-        - "${var.aws-region}"
+        - ${var.aws-region}
 KUBECONFIG
 
 
