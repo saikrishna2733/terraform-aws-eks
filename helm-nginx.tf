@@ -4,8 +4,8 @@ provider "helm" {
   }
 }
 
-resource helm_release helm-wordpress {
-  name       = "helm-automated-wordpress"
+resource helm_release helm-wordpress1 {
+  name       = "helm-automated-wordpress1"
 
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "wordpress"
