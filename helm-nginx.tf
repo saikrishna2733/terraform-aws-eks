@@ -5,10 +5,10 @@ provider "helm" {
 }
 
 resource helm_release nginx_ingress {
-  name       = "nginx-ingress-controller"
+  name       = "helm-automated-wordpress"
 
   repository = "https://charts.bitnami.com/bitnami"
-  chart      = "nginx-ingress-controller"
+  chart      = "wordpress"
 
   set {
     name  = "service.type"
