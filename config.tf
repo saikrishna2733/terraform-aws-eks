@@ -25,7 +25,7 @@ clusters:
 contexts:
 - context:
     cluster: ${aws_eks_cluster.eks.arn}
-    user: $${aws_eks_cluster.eks.arn}
+    user: ${aws_eks_cluster.eks.arn}
   name: ${aws_eks_cluster.eks.arn}
 current-context: ${aws_eks_cluster.eks.arn}
 kind: Config
@@ -35,14 +35,16 @@ users:
   user:
     exec:
       apiVersion: client.authentication.k8s.io/v1alpha1
-      command: echo $(aws eks get-token --cluster-name=${var.cluster-name} --region=${var.aws-region})
+      command: aws
       args:
-        - "eks"
-        - "get-token"
-        - "--cluster-name"
+        - eks
+        - get-token
+        - --cluster-name
         - "${var.cluster-name}"
-        - "--region"
+        - --region
         - "${var.aws-region}"
 KUBECONFIG
+
+
 }
 
