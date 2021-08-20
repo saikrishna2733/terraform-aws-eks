@@ -18,13 +18,13 @@ variable "cluster-name" {
 
 
 variable "aws-region" {
-  default     = "us-east-1"
+  default     = "ap-south-1"
   type        = string
   description = "The AWS Region to deploy EKS"
 }
 
 variable "availability-zones" {
-  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  default     = ["ap-south-1a", "ap-south-1b"]
   type        = list
   description = "The AWS AZ to deploy EKS"
 }
@@ -110,7 +110,7 @@ variable "min-size" {
 }
 ################################# EC2-Keypair Variables starts here ###################
 variable "ec2-key-public-key" {
-  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAsbGfmwFr1if0a6eUnNlylnzbhAevNyU656H8ApcqIDh+vYvOIxqXYzkQ5nNlCCrGe2TAOt/grx4q0wfkuIIIqeZnTzx1Qv3h25Vox0lU2FGpS6bLT0k7y6+hzUzapmNPep1W9VGCNQxJ7MyuxwtTymbLyMHoKRH9gWudToUjG2ip1JQQABLgsJ8hWm6zwJJmOijs5HFBXLN61ZLL2o2PRkMH/Uo52tOK2sw58KLpGRyKo6JPbGoKGp5TJUjL3prKiF/eqX82zFRIxsFypobhCUeAnkGa6BBjg043CH6M61NpcfQddmtdX0cKWhId3rDuxqWDwzI+Gxq9Bho6yblxkQ== rsa-key-20210811"
+  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgPc1rwgVQ+UGnnJOahug1dibsgQBqfUDRSdssLDdrv7HFDVNNHvMTvCOKC0hJLSLKy+UddNgbKMOqKJoJ/5WOrjPDH0J6jVHyYcjYhuPFmjMbAyCHGMDgtglv3427oz1AetHjUmP5O99jOg8nZxdgzt+ZA4bUfgwf+hJYzAsBcvJFWUWv0ykiubOd/6C0w3/2ryBl5XXmduNGgWBIVZXJ9clXDxisMRXw9iEIWtR9A73tyV7R3QWifoYSQtyyziuJ6vytKZqFTqrEvNyifge0DTqUASxg4+93NwhJpwEodI/BxPWHWIGYmJwqm2mD2+PQZwzLF4h4RjkU4Sv6knrBw== rsa-key-20210819"
   type        = string
   description = "AWS EC2 public key data"
 }
