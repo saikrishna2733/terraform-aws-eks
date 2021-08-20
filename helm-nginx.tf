@@ -4,7 +4,7 @@ provider "helm" {
   }
 }
 
-resource helm_release nginx_ingress {
+resource helm_release helm-wordpress {
   name       = "helm-automated-wordpress"
 
   repository = "https://charts.bitnami.com/bitnami"
