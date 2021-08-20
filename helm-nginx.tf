@@ -12,6 +12,6 @@ resource helm_release helm-wordpress {
 
   set {
     name  = "service.type"
-    value = "ClusterIP"
+    value = "LoadBalancer"
   }
 }
