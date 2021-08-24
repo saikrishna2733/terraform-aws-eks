@@ -1,0 +1,31 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      # download and configure AWS IAM Authenticator
+      - curl -o /usr/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator
+      - chmod 755 /usr/bin/aws-iam-authenticator
+      # update kube config
+      - aws sts get-caller-identity
+      - aws eks --region ap-south-1 update-kubeconfig --name eks-cluster
+      - export KUBECONFIG=/root/.kube/config
+      - kubectl get nodes
+      # get commit hash
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+  build:
+    commands:
+      # Extracting AWS Credential Information using STS Assume Role for kubectl
+      - echo "Apply changes to kube manifests"           
+      - kubectl get nodes
+    #  - kubectl apply -f kube-manifests/
+     # - aws eks --region ap-south-1 update-kubeconfig --name harshad
+      # create namespace
+      - kubectl create ns $EKS_NAMESPACE || true
+      # set current namespace
+      - kubectl config set-context $(kubectl config current-context) --namespace=$EKS_NAMESPACE
+      # update image in deployment
+      - ECR_REPO=$(echo $ECR_REPO | sed 's:/:\\\/:g')
+      - sed -i.'' "s/IMAGE_NAME:IMAGE_TAG/$ECR_REPO:$COMMIT_HASH/g" kubespec/deployment.yml
+      # apply kube specs
+      - kubectl apply -f kubespec/deployment.yml -f kubespec/service.yml

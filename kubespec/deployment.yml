@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tc-deployment-a
+  labels:
+    app: tc-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tc-app
+  template:
+    metadata:
+      labels:
+        app: tc-app
+    spec:
+      containers:
+      - name: tc-app
+        image: IMAGE_NAME:IMAGE_TAG
+        ports:
+        - containerPort: 8080
+        affinity:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: failure-domain.beta.kubernetes.io/zone
+                operator: In
+                values:
+                - ap-south-1a
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tc-deployment-b
+  labels:
+    app: tc-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tc-app
+  template:
+    metadata:
+      labels:
+        app: tc-app
+    spec:
+      containers:
+      - name: tc-app
+        image: IMAGE_NAME:IMAGE_TAG
+        ports:
+        - containerPort: 8080
+        affinity:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: failure-domain.beta.kubernetes.io/zone
+                operator: In
+                values:
+                - ap-south-1b

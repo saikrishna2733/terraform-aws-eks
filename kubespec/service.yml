@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: tc-service
+spec:
+  selector:
+    app: tc-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
