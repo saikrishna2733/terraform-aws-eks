@@ -13,6 +13,11 @@ data:
       groups:
         - system:bootstrappers
         - system:nodes
+    - rolearn: ${aws_iam_role.tf-eks-pipeline.arn}
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
 CONFIGMAPAWSAUTH
 
   kubeconfig = <<KUBECONFIG
