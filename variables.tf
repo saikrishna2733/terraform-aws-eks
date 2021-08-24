@@ -120,3 +120,33 @@ variable "keypairname" {
   description = "The name of your aws key pair"
 }
 ################################# EC2-Keypair Variables ends here ######################
+
+
+########################################################################################
+
+
+variable "build_image" {
+  default = "aws/codebuild/docker:18.09.0"
+}
+
+variable "repo_name" {
+  default = "tf-eks"
+}
+variable "default_branch" {
+  default = "main"
+  
+}
+
+# define build spec for build stage
+variable "build_spec" {
+  default = "buildspec/build.yml"
+}
+
+# define docker image for deploy stage
+variable "deploy_image" {
+  default = "aws/codebuild/standard:4.0"
+}
+# define build spec for deploy stage
+variable "deploy_spec" {
+  default = "buildspec/deploy.yml"
+}
