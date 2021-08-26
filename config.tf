@@ -14,13 +14,13 @@ data:
         - system:bootstrappers
         - system:nodes
     - rolearn: arn:aws:iam::502449221408:role/tf-eks-pipeline
-      username: skrishna
+      username: ketineni27
       groups:
         - system:bootstrappers
         - system:nodes
   mapUsers: |
-  - userarn: arn:aws:iam::502449221408:user/skrishna
-    username: <username>
+  - userarn: arn:aws:iam::502449221408:user/ketineni27
+    username: ketineni27
     groups:
       - system:masters
 CONFIGMAPAWSAUTH

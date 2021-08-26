@@ -1,12 +1,12 @@
 # Variables Configuration
 variable "AWS_SECRET_KEY"{
-  default     = ""
+  default     = "/Ozw0uuj28tFKRBb8ZL37EvHvqRDEstqnuoPMehS"
   type        = string
   description = "aws secret key details"
 }
 
 variable "AWS_ACCESS_KEY"{
-  default     = ""
+  default     = "AKIAXJ7COV4QNMFOO75H"
   type        = string
   description = "aws secret key details"
 }
@@ -18,13 +18,13 @@ variable "cluster-name" {
 
 
 variable "aws-region" {
-  default     = "ap-south-1"
+  default     = "us-west-1"
   type        = string
   description = "The AWS Region to deploy EKS"
 }
 
 variable "availability-zones" {
-  default     = ["ap-south-1a", "ap-south-1b"]
+  default     = ["us-west-1a", "us-west-1c"]
   type        = list
   description = "The AWS AZ to deploy EKS"
 }
@@ -110,12 +110,12 @@ variable "min-size" {
 }
 ################################# EC2-Keypair Variables starts here ###################
 variable "ec2-key-public-key" {
-  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgPc1rwgVQ+UGnnJOahug1dibsgQBqfUDRSdssLDdrv7HFDVNNHvMTvCOKC0hJLSLKy+UddNgbKMOqKJoJ/5WOrjPDH0J6jVHyYcjYhuPFmjMbAyCHGMDgtglv3427oz1AetHjUmP5O99jOg8nZxdgzt+ZA4bUfgwf+hJYzAsBcvJFWUWv0ykiubOd/6C0w3/2ryBl5XXmduNGgWBIVZXJ9clXDxisMRXw9iEIWtR9A73tyV7R3QWifoYSQtyyziuJ6vytKZqFTqrEvNyifge0DTqUASxg4+93NwhJpwEodI/BxPWHWIGYmJwqm2mD2+PQZwzLF4h4RjkU4Sv6knrBw== rsa-key-20210819"
+  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAhkU5wegBBgB2qUgS5HDa6KHOyfdDgUm7nn3r5ZeSmwRYAD76CB9DAsCcLxsz+PAXP8watOFgbyU8JlFfL31wnpl1FwhsJjBnlx8RnaOFE3cRaPGbXqDMnst+rewrB48L499EakZ74LGBQtHXXgANsUNROY3cq9OGVPrjxskvCliQV3UKjtA6pVpf+V3/Exql//iFtwY5SkUxSYTOlTBQCpXZOWehVi6HDMUolJ7dYZuTn6m/w5FYDzEr+x/LAaT0ZTTtLJ63bqYBB5qrmddGo6GVeGYx/WvXdMGcWQ6liF9hbcz/kmY8GjUETUargcWJw+6Txvu7sPfW3MUeK6nQoQ== rsa-key-20210812"
   type        = string
   description = "AWS EC2 public key data"
 }
 variable "keypairname" {
-  default     = "sai-keypair"
+  default     = "my-ec2-keypair"
   type        = string
   description = "The name of your aws key pair"
 }
@@ -133,7 +133,7 @@ variable "repo_name" {
   default = "tf-eks"
 }
 variable "default_branch" {
-  default = "main"
+  default = "master"
   
 }
 

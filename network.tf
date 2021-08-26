@@ -38,7 +38,7 @@ resource "aws_subnet" "publicsubnet1" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "ap-south-1a"
+  availability_zone = "us-west-1a"
 
   tags = {
     Name = "${var.cluster-name}-eks-public"
@@ -52,7 +52,7 @@ resource "aws_subnet" "publicsubnet2" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.2.0/24"
   map_public_ip_on_launch = true
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-west-1c"
 
   tags = {
     Name = "${var.cluster-name}-eks-public"
@@ -75,7 +75,7 @@ resource "aws_subnet" "publicsubnet2" {
 resource "aws_subnet" "privatesubnet1" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.30.0/24"
-  availability_zone = "ap-south-1a"
+  availability_zone = "us-west-1a"
   tags = {
     Name = "${var.cluster-name}-eks-private"
   }
@@ -84,7 +84,7 @@ resource "aws_subnet" "privatesubnet1" {
 resource "aws_subnet" "privatesubnet2" {
   vpc_id     = aws_vpc.vpc.id
   cidr_block = "10.0.20.0/24"
-  availability_zone = "ap-south-1b"
+  availability_zone = "us-west-1c"
   tags = {
     Name = "${var.cluster-name}-eks-private"
   }
