@@ -1,0 +1,12 @@
+ Error: Error waiting for internet gateway (igw-08920c1513039c615) to detach: timeout while waiting for state to become 'detached' (last state: 'detaching', timeout: 15m0s)
+│
+│
+╵
+╷
+│ Error: error deleting subnet (subnet-04aadf4f576440cec): timeout while waiting for state to become 'destroyed' (last state: 'pending', timeout: 20m0s)
+│
+│
+╵
+╷
+│ Error: error deleting subnet (subnet-00016e85cdd160569): timeout while waiting for state to become 'destroyed' (last state: 'pending', timeout: 20m0s)
+│
