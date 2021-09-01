@@ -15,7 +15,7 @@ data:
         - system:nodes
 CONFIGMAPAWSAUTH
 
-  kubeconfig = <<KUBECONFIG
+  kubeconfig = <<EOT
 apiVersion: v1
 clusters:
 - cluster:
@@ -43,7 +43,7 @@ users:
         - ${var.cluster-name}
         - --region
         - ${var.aws-region}
-KUBECONFIG
+EOT
 
 
 }

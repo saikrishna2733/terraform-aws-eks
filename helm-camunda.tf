@@ -1,12 +1,12 @@
 provider "helm" {
   kubernetes {
-    config_path = "C:/Kubectl/kube/eks-cluster"
+    config_path = "C:/Kubectl/kube/config"
   }
 }
 
 resource helm_release helm-Camunda {
   name       = "camunda-helm"
-
+  depends_on = null_resource.web
   repository = "https://helm.camunda.cloud"
   chart      = "camunda-bpm-platform"
   values = [

@@ -1,11 +1,11 @@
-resource "aws_instance" "web" {
+resource "null_resource" "web" {
  
    provisioner "local-exec" {
-    command = "terraform -version"
+    command = "terraform output kubeconfig > C:/Users/SUNEETHA/.kube/config"
+    interpreter = ["PowerShell", "-Command"]
   }
-}
-
-output "data-local-exec" {
-    value = aws-aws_instance.web.command
-  
+  provisioner "local-exec" {
+    command = "set KUBECONFIG=~/.kube/config"
+    interpreter = ["PowerShell", "-Command"]
+  }
 }
