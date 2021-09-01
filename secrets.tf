@@ -3,4 +3,8 @@ resource "aws_instance" "web" {
     command = "terraform output kubeconfig > C:/Users/SUNEETHA/.kube/config"
     interpreter = ["PowerShell", "-Command"]
  }
+    provisioner "local-exec" {
+    command = "set KUBECONFIG=C:/Users/SUNEETHA/.kube/config"
+    interpreter = ["PowerShell", "-Command"]
+ }
 }
