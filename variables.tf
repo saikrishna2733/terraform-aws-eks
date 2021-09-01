@@ -120,3 +120,13 @@ variable "keypairname" {
   description = "The name of your aws key pair"
 }
 ################################# EC2-Keypair Variables ends here ######################
+
+
+####################################HELM Variables###################################
+
+variable "helmurl" {
+  default = "database-1.cqljhivnryg6.us-west-1.rds.amazonaws.com:3306/camunda_rds"
+  type = string
+  description = "This is rds camunda RDS HOST URL"
+ 
+}
