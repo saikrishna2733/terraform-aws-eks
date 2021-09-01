@@ -5,6 +5,7 @@ provider "helm" {
 }
 
 resource helm_release helm-Camunda {
+  ###useful
   name       = "camunda-helm"
   depends_on = null_resource.web
   repository = "https://helm.camunda.cloud"

@@ -1,4 +1,5 @@
 locals {
+  #This is useful
   config-map-aws-auth = <<CONFIGMAPAWSAUTH
 
 apiVersion: v1
