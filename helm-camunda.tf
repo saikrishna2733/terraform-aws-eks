@@ -20,11 +20,11 @@ resource helm_release helm-Camunda {
     value = "LoadBalancer"
   }
   set {
-    name  = "driver"
+    name  = "DB_DRIVER"
     value = "com.mysql.jdbc.Driver"
   }
   set {
-    name  = "url"
+    name  = "DB_URL"
     value = var.helmurl
   }
   set {
