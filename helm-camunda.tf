@@ -31,5 +31,9 @@ resource helm_release helm-Camunda {
     name  = "credentialsSecretName"
     value = "camunda-secret"
   }
+  set {
+  name  = "env"
+  value = {"DB_DRIVER" = "com.mysql.jdbc.Driver", "DB_URL" = "${var.helmurl}"}
+}
   
 }
