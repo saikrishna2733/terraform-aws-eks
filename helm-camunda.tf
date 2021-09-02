@@ -5,16 +5,10 @@ provider "helm" {
 }
 
 resource helm_release helm-Camunda {
-  ###useful
   name       = "camunda-helm"
-  depends_on = null_resource.web
   repository = "https://helm.camunda.cloud"
   chart      = "camunda-bpm-platform"
-  values = [
-    "${file("C:/Kubectl/kube/values.yaml")}"
-  ]
-
-
+  values = file("C:/Kubectl/kube/values.yaml")
   set {
     name  = "service.type"
     value = "LoadBalancer"
@@ -34,6 +28,7 @@ resource helm_release helm-Camunda {
   set {
   name  = "env"
   value = {"DB_DRIVER" = "com.mysql.jdbc.Driver", "DB_URL" = "${var.helmurl}"}
-}
+  }
+  
   
 }
